@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 # create an Admin
-Fabricate :user, role: :admin, nickname: 'admin', password: 'admin_pass'
+Fabricate :user, role: :admin, nickname: 'admin', password: 'admin_pass', email: 'admin@mysite.com'
 
 # create some users
 users = Fabricate.times 5, :user, role: :user, password: 'user_pass'

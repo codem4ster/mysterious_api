@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216182151) do
+ActiveRecord::Schema.define(version: 20160218090419) do
 
   create_table "blog_posts", force: :cascade do |t|
     t.string   "title"
@@ -60,8 +60,10 @@ ActiveRecord::Schema.define(version: 20160216182151) do
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "creator_user_id"
   end
 
+  add_index "users", ["creator_user_id"], name: "index_users_on_creator_user_id"
   add_index "users", ["email"], name: "index_users_on_email"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true

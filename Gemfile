@@ -25,6 +25,12 @@ gem 'pundit'
 gem 'fabrication'
 gem 'faker'
 
+# for easing tests
+gem "interactor-rails", "~> 2.0"
+
+# for cross domain permissions
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -50,6 +56,7 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'simplecov'
 end
 
 group :development do

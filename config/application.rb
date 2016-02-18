@@ -25,5 +25,16 @@ module MysteriousApi
     config.generators do |g|
       g.test_framework :rspec
     end
+
+    # This is not secure !!! Reconfigure for your domain
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*',
+                 :headers => :any,
+                 :methods => [:get, :post, :options, :patch, :put, :delete],
+                 :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'request-id']
+      end
+    end
   end
 end
