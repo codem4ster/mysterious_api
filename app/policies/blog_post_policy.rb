@@ -1,19 +1,23 @@
 class BlogPostPolicy < ApplicationPolicy
 
   def index?
-    @current_user.admin? or @current_user.user? or @current_user.guest?
+    @user and ['admin', 'user', 'guest'].include? @user.role
+  end
+
+  def create?
+    @user and ['admin', 'user'].include? @user.role
   end
 
   def show?
-    @current_user.admin? or @current_user.user? or @current_user.guest?
+    index?
   end
 
   def update?
-    @current_user.admin? or @current_user == @model
+    create? and (@user.role == 'user' ? @record.user == @user : true)
   end
 
   def destroy?
-    not @current_user == @model and @current_user.admin?
+    update?
   end
 
 end

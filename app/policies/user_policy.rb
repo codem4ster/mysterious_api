@@ -1,19 +1,24 @@
 class UserPolicy < ApplicationPolicy
 
   def index?
-    @current_user.admin? or @current_user.user? or @current_user.guest?
+    @user and ['admin', 'user', 'guest'].include? @user.role
+  end
+
+  def create?
+    # user can only create other users not admin
+    @user and ['admin', 'user'].include? @user.role and
+      (@user.role == 'user' ? @record.role == 'user' : true)
   end
 
   def show?
-    @current_user.admin? or @current_user.user? or @current_user.guest?
-  end
-
-  def update?
-    @current_user.admin? or @current_user == @model
+    index?
   end
 
   def destroy?
-    not @current_user == @model and @current_user.admin?
+    @user and
+      @user != @record and
+      ['admin', 'user'].include? @user.role and
+      (@user.role == 'user' ? @record.creator_user == @user : true)
   end
 
 end
