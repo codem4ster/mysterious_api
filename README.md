@@ -5,7 +5,7 @@ Tests
 ------------------
 **Tested with:**  Ruby2.1 and above  
 **Coverage:**  %93  
-You can user `rspec` to run tests  
+You can use `rspec` to run tests  
 I wrote only controller tests for this project it includes integration and unit tests together for almost any case (64 tests) with the ***coverage of***;
 
  - **100%** controllers
